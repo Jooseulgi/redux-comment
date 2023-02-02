@@ -36,13 +36,6 @@
       "createdAt": "2022-03-05"
     },
     {
-      "id": 6,
-      "profile_url": "https://picsum.photos/id/6/50/50",
-      "author": "abc_6",
-      "content": "React 소스 배포는 보통 어떤식으로 하나요.",
-      "createdAt": "2022-03-06"
-    },
-    {
       "id": 7,
       "profile_url": "https://picsum.photos/id/7/50/50",
       "author": "abc_7",
@@ -52,8 +45,8 @@
     {
       "id": 8,
       "profile_url": "https://picsum.photos/id/8/50/50",
-      "author": "abc_8",
-      "content": "Typescript 배워 보려고 합니다. 어떻게 배우는게 빠를까요",
+      "author": "abc_8dsadsd",
+      "content": "Typescript 배워 보려고 합니다. 어떻게 배우는게 빠를까요asdasda",
       "createdAt": "2022-03-08"
     },
     {
@@ -153,6 +146,27 @@
       "author": "abc_22",
       "content": "주변에 React 개발자 있나요",
       "createdAt": "2022-03-22"
+    },
+    {
+      "author": "수정하기222",
+      "content": "asdasd",
+      "createdAt": "asdasd",
+      "profile_url": "sdasdasd",
+      "id": 23
+    },
+    {
+      "author": "sdf",
+      "content": "sdf",
+      "profile_url": "sdfsdf",
+      "createdAt": "sdfsdf",
+      "id": 24
+    },
+    {
+      "profile_url": "ㄴㅇㅁㄴㅇ",
+      "author": "ㅁㄴㅇㅁㄴㅇ",
+      "content": "111111111ㅇㅇ",
+      "createdAt": "ㅁㄴㅇㅁㄴㅇ",
+      "id": 25
     }
   ]
 }
