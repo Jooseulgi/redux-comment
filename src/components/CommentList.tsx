@@ -1,32 +1,75 @@
 import React, { useEffect } from 'react';
-import { useAddDispatch, useAppSelector } from 'src/store';
-import { getComments } from 'src/store/features/comments.slice';
+import { useAppDispatch, useAppSelector } from 'src/store';
+import {
+  deleteComment,
+  getPagingComments,
+} from 'src/store/features/comments.action';
+import { setMode, setForm } from 'src/store/features/comments.slice';
 import styled from 'styled-components';
+import Loading from './Loading';
 
 function CommentList() {
-  const dispatch = useAddDispatch();
-  useEffect(() => {
-    dispatch(getComments());
-  }, [dispatch]);
   const { comments, loading, error } = useAppSelector(state => state);
+  const dispatch = useAppDispatch();
 
-  if (error) return <div>Sorry. Cant get the data..</div>;
+  const handleEdit = (id: string) => {
+    const editComment = comments?.find(comment => comment.id === id);
+    if (editComment) dispatch(setForm(editComment));
+    dispatch(setMode('put'));
+  };
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm('삭제하시겠습니까?')) {
+      await dispatch(deleteComment(id));
+      dispatch(getPagingComments(1));
+    }
+  };
+
+  const handleImgError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = 'https://picsum.photos/id/1/50/50';
+  };
+
+  useEffect(() => {
+    dispatch(getPagingComments(1));
+  }, []);
+
+  if (error) return <div>{error}</div>;
   return (
     <div>
-      {loading
-        ? '로딩중'
-        : comments?.map(comment => (
-            <Comment key={comment.id}>
-              <img src={comment.profile_url} alt="" />
-              {comment.author}
-              <CreatedAt>{comment.createdAt}</CreatedAt>
-              <Content>{comment.content}</Content>
-              <Button>
-                <button type="button">수정</button>
-                <button type="button">삭제</button>
-              </Button>
-            </Comment>
-          ))}
+      {loading ? (
+        <Loading />
+      ) : (
+        comments?.map(comment => (
+          <Comment key={comment.id}>
+            <img
+              src={comment.profile_url}
+              onError={handleImgError}
+              alt="프로필이미지"
+            />
+            {comment.author}
+            <CreatedAt>{comment.createdAt}</CreatedAt>
+            <Content>{comment.content}</Content>
+            <Button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleEdit(comment.id);
+                }}
+              >
+                수정
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleDelete(comment.id);
+                }}
+              >
+                삭제
+              </button>
+            </Button>
+          </Comment>
+        ))
+      )}
     </div>
   );
 }

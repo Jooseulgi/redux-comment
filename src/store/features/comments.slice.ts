@@ -1,56 +1,109 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Comment } from '../../types';
-
-const API = 'http://localhost:4000/comments';
-
-// action
-export const getComments = createAsyncThunk(
-  'comment/getComments',
-  async (data, thunkApi) => {
-    try {
-      const res = await axios.get(API);
-      return res.data;
-    } catch (error: any) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  },
-);
-
-interface BasicState {
-  loading: boolean;
-  comments: null | Comment[];
-  error: null | string;
-}
-
-const initialState = {
-  loading: false,
-  comments: null,
-  error: null,
-} as BasicState;
-
-// slice
-const getCommentsSlice = createSlice({
-  name: 'getComments',
+import {
+  addComment,
+  deleteComment,
+  getTotalComments,
+  getPagingComments,
   initialState,
-  reducers: {},
+  SubmitMode,
+  updateComment,
+} from './comments.action';
+
+const commentsSlice = createSlice({
+  name: 'comments',
+  initialState,
+  reducers: {
+    resetForm: state => {
+      state.inputs = initialState.inputs;
+    },
+    setForm: (state, action: PayloadAction<Comment>) => {
+      state.inputs = { ...action.payload };
+    },
+    setMode: (state, action: PayloadAction<SubmitMode>) => {
+      state.submitMode = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
-      .addCase(getComments.pending, state => {
+      .addCase(getPagingComments.pending, state => {
         state.loading = true;
       })
+      .addCase(getPagingComments.fulfilled, (state, action) => {
+        const [comments, currentPage] = action.payload;
+        state.loading = false;
+        state.comments = comments;
+        state.currentPage = currentPage;
+      })
       .addCase(
-        getComments.fulfilled,
-        (state, action: PayloadAction<Comment[]>) => {
+        getPagingComments.rejected,
+        (state, action: PayloadAction<any>) => {
           state.loading = false;
-          state.comments = action.payload;
+          state.error = action.payload;
         },
-      )
-      .addCase(getComments.rejected, (state, action: PayloadAction<any>) => {
+      );
+
+    builder
+      .addCase(getTotalComments.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getTotalComments.fulfilled, (state, action) => {
+        state.loading = false;
+        state.totalCount = action.payload.length;
+      })
+      .addCase(
+        getTotalComments.rejected,
+        (state, action: PayloadAction<any>) => {
+          state.loading = false;
+          state.error = action.payload;
+        },
+      );
+
+    builder.addCase(addComment.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(addComment.fulfilled, (state, action) => {
+      state.loading = false;
+      state.comments?.push(action.payload);
+    });
+    builder.addCase(
+      addComment.rejected,
+      (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      },
+    );
+
+    builder.addCase(updateComment.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(updateComment.fulfilled, state => {
+      state.loading = false;
+    });
+    builder.addCase(
+      updateComment.rejected,
+      (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      },
+    );
+
+    builder
+      .addCase(deleteComment.pending, state => {
+        state.loading = true;
+      })
+      .addCase(deleteComment.fulfilled, (state, action) => {
+        state.loading = false;
+        state.comments = state.comments!.filter(
+          comment => comment.id !== action.payload.id,
+        );
+      })
+      .addCase(deleteComment.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export default getCommentsSlice.reducer;
+export const { resetForm, setForm, setMode } = commentsSlice.actions;
+export default commentsSlice;

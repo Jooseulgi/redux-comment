@@ -1,9 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
-import getCommentsSlice from './features/comments.slice';
+import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import commentsSlice from './features/comments.slice';
 
 const store = configureStore({
-  reducer: getCommentsSlice,
+  reducer: commentsSlice.reducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
