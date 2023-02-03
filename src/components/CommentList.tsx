@@ -7,7 +7,8 @@ import {
 } from 'src/store/features/comments.action';
 import { setMode, setForm } from 'src/store/features/comments.slice';
 import styled from 'styled-components';
-import Loading from './Loading';
+import { HiPencil, HiTrash } from 'react-icons/hi';
+import Spinner from './Spinner';
 
 function CommentList() {
   const { comments, loading, error } = useAppSelector(state => state);
@@ -35,39 +36,45 @@ function CommentList() {
     dispatch(getPagingComments(1));
   }, []);
 
-  if (loading) return <Loading />;
+  if (loading) return <Spinner />;
   if (error) return <div>{error}</div>;
   return (
     <div>
       {comments?.map(comment => (
-        <Comment key={comment.id}>
-          <img
-            src={comment.profile_url}
-            onError={handleImgError}
-            alt="프로필이미지"
-          />
-          {comment.author}
-          <CreatedAt>{comment.createdAt}</CreatedAt>
+        <CommentBox key={comment.id}>
+          <InfoContent>
+            <Profile>
+              <img
+                src={comment.profile_url}
+                onError={handleImgError}
+                alt="프로필이미지"
+              />
+              <div>
+                <span>{comment.author}</span>
+                <CreatedAt>{comment.createdAt}</CreatedAt>
+              </div>
+            </Profile>
+            <Buttons>
+              <button
+                type="button"
+                onClick={() => {
+                  handleEdit(comment.id);
+                }}
+              >
+                <HiPencil />
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  handleDelete(comment.id);
+                }}
+              >
+                <HiTrash />
+              </button>
+            </Buttons>
+          </InfoContent>
           <Content>{comment.content}</Content>
-          <Button>
-            <button
-              type="button"
-              onClick={() => {
-                handleEdit(comment.id);
-              }}
-            >
-              수정
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                handleDelete(comment.id);
-              }}
-            >
-              삭제
-            </button>
-          </Button>
-        </Comment>
+        </CommentBox>
       ))}
     </div>
   );
@@ -75,36 +82,60 @@ function CommentList() {
 
 export default CommentList;
 
-const Comment = styled.div`
-  padding: 7px 10px;
-  text-align: left;
+const CommentBox = styled.div`
+  padding-top: 25px;
+`;
 
-  & > img {
+const InfoContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Profile = styled.div`
+  display: flex;
+  img {
+    margin-top: 5px;
     vertical-align: middle;
     margin-right: 10px;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+  }
+  span {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
   }
 `;
 
 const CreatedAt = styled.div`
-  float: right;
-  vertical-align: middle;
+  margin-top: 7px;
+  font-size: 12px;
+  color: #999;
 `;
 
 const Content = styled.div`
-  margin: 10px 0;
+  margin: 20px 0 0 35px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #f1f1f1;
 `;
 
-const Button = styled.div`
-  text-align: right;
-  margin: 10px 0;
-  & > a {
+const Buttons = styled.div`
+  flex: none;
+  margin-left: 10px;
+  button {
     margin-right: 10px;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.25rem;
-    border: 1px solid lightgray;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: none;
+    background: #f8f9fe;
+    color: #888;
+    font-size: 12px;
+    transition: 0.2s;
     cursor: pointer;
+    &:hover {
+      background: #f3f5ff;
+      color: #222;
+    }
   }
 `;

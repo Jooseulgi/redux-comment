@@ -5,7 +5,7 @@ import {
   getPagingComments,
 } from 'src/store/features/comments.action';
 import styled from 'styled-components';
-import Loading from './Loading';
+import Spinner from './Spinner';
 
 function PageList() {
   const { totalCount, currentPage, loading, error } = useAppSelector(
@@ -27,7 +27,7 @@ function PageList() {
     dispatch(getTotalComments());
   }, [totalCount]);
 
-  if (loading) return <Loading />;
+  if (loading) return <Spinner />;
   if (error) return <div>{error}</div>;
   return (
     <PageListStyle>
@@ -48,24 +48,27 @@ function PageList() {
 export default PageList;
 
 const PageListStyle = styled.div`
-  margin-bottom: 20px;
+  margin: 20px 0;
   text-align: center;
 `;
 
 const Page = styled.button`
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border: 1px solid lightgray;
-  margin-right: 3px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  border: none;
+  outline: none;
+  background: #f8f9fe;
+  cursor: pointer;
+  margin: 3px;
+  border: none;
 `;
 
 const NumberPage = styled(Page)`
   ${({ active }: { active: boolean }) =>
     active &&
     `
-        background: gray;
+    background:#696d86;
         color: #fff;
   `}
 `;
