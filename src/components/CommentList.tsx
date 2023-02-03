@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from 'src/store';
 import {
   deleteComment,
   getPagingComments,
+  getTotalComments,
 } from 'src/store/features/comments.action';
 import { setMode, setForm } from 'src/store/features/comments.slice';
 import styled from 'styled-components';
@@ -21,6 +22,7 @@ function CommentList() {
   const handleDelete = async (id: string) => {
     if (window.confirm('삭제하시겠습니까?')) {
       await dispatch(deleteComment(id));
+      dispatch(getTotalComments());
       dispatch(getPagingComments(1));
     }
   };

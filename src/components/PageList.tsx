@@ -22,7 +22,7 @@ function PageList() {
 
   useEffect(() => {
     dispatch(getTotalComments());
-  }, [currentPage]);
+  }, [totalCount]);
 
   return (
     <PageListStyle>

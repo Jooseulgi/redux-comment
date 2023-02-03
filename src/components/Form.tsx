@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from 'src/store';
 import {
   addComment,
   getPagingComments,
+  getTotalComments,
   updateComment,
 } from 'src/store/features/comments.action';
 import { setForm, setMode, resetForm } from 'src/store/features/comments.slice';
@@ -38,6 +39,7 @@ function Form() {
       await dispatch(updateComment(editedComment));
       dispatch(getPagingComments(currentPage));
     }
+    dispatch(getTotalComments());
     dispatch(resetForm());
     dispatch(setMode('post'));
   };
