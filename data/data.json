@@ -146,27 +146,6 @@
       "author": "abc_22",
       "content": "주변에 React 개발자 있나요",
       "createdAt": "2022-03-22"
-    },
-    {
-      "author": "수정하기222",
-      "content": "asdasd",
-      "createdAt": "asdasd",
-      "profile_url": "sdasdasd",
-      "id": 23
-    },
-    {
-      "author": "sdf",
-      "content": "sdf",
-      "profile_url": "sdfsdf",
-      "createdAt": "sdfsdf",
-      "id": 24
-    },
-    {
-      "profile_url": "ㄴㅇㅁㄴㅇ",
-      "author": "ㅁㄴㅇㅁㄴㅇ",
-      "content": "111111111ㅇㅇ",
-      "createdAt": "ㅁㄴㅇㅁㄴㅇ",
-      "id": 25
     }
   ]
 }
