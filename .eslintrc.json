@@ -23,13 +23,14 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    // 배포를 위한 off 추가
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
-    // 배포를 위한 any warning off
     "@typescript-eslint/no-explicit-any": "off",
     "no-param-reassign": ["error", { "props": false }],
     "no-alert": "off",
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/naming-convention": "off"
   }
 }
