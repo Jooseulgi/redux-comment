@@ -22,8 +22,8 @@ function CommentList() {
   const handleDelete = async (id: string) => {
     if (window.confirm('삭제하시겠습니까?')) {
       await dispatch(deleteComment(id));
-      dispatch(getTotalComments());
       dispatch(getPagingComments(1));
+      dispatch(getTotalComments());
     }
   };
 
@@ -35,43 +35,40 @@ function CommentList() {
     dispatch(getPagingComments(1));
   }, []);
 
+  if (loading) return <Loading />;
   if (error) return <div>{error}</div>;
   return (
     <div>
-      {loading ? (
-        <Loading />
-      ) : (
-        comments?.map(comment => (
-          <Comment key={comment.id}>
-            <img
-              src={comment.profile_url}
-              onError={handleImgError}
-              alt="프로필이미지"
-            />
-            {comment.author}
-            <CreatedAt>{comment.createdAt}</CreatedAt>
-            <Content>{comment.content}</Content>
-            <Button>
-              <button
-                type="button"
-                onClick={() => {
-                  handleEdit(comment.id);
-                }}
-              >
-                수정
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  handleDelete(comment.id);
-                }}
-              >
-                삭제
-              </button>
-            </Button>
-          </Comment>
-        ))
-      )}
+      {comments?.map(comment => (
+        <Comment key={comment.id}>
+          <img
+            src={comment.profile_url}
+            onError={handleImgError}
+            alt="프로필이미지"
+          />
+          {comment.author}
+          <CreatedAt>{comment.createdAt}</CreatedAt>
+          <Content>{comment.content}</Content>
+          <Button>
+            <button
+              type="button"
+              onClick={() => {
+                handleEdit(comment.id);
+              }}
+            >
+              수정
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleDelete(comment.id);
+              }}
+            >
+              삭제
+            </button>
+          </Button>
+        </Comment>
+      ))}
     </div>
   );
 }

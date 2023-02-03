@@ -5,9 +5,12 @@ import {
   getPagingComments,
 } from 'src/store/features/comments.action';
 import styled from 'styled-components';
+import Loading from './Loading';
 
 function PageList() {
-  const { totalCount, currentPage } = useAppSelector(state => state);
+  const { totalCount, currentPage, loading, error } = useAppSelector(
+    state => state,
+  );
   const dispatch = useAppDispatch();
 
   const pageArray = [];
@@ -24,6 +27,8 @@ function PageList() {
     dispatch(getTotalComments());
   }, [totalCount]);
 
+  if (loading) return <Loading />;
+  if (error) return <div>{error}</div>;
   return (
     <PageListStyle>
       {pageArray.map(page => (

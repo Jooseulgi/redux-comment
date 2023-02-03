@@ -8,9 +8,12 @@ import {
 } from 'src/store/features/comments.action';
 import { setForm, setMode, resetForm } from 'src/store/features/comments.slice';
 import styled from 'styled-components';
+import Loading from './Loading';
 
 function Form() {
-  const { inputs, submitMode, currentPage } = useAppSelector(state => state);
+  const { inputs, submitMode, currentPage, loading, error } = useAppSelector(
+    state => state,
+  );
   const { profile_url, author, content, createdAt } = inputs;
   const dispatch = useAppDispatch();
 
@@ -44,6 +47,8 @@ function Form() {
     dispatch(setMode('post'));
   };
 
+  if (loading) return <Loading />;
+  if (error) return <div>{error}</div>;
   return (
     <FormStyle>
       <form onSubmit={handleSubmit}>
