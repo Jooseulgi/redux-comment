@@ -31,6 +31,7 @@
     "no-param-reassign": ["error", { "props": false }],
     "no-alert": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/naming-convention": "off"
+    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }
