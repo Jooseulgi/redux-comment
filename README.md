@@ -4,9 +4,11 @@
 
 ## 프로젝트 개요
 
-Redux의 기본적인 기능 이해 및 Redux를 사용해 API 서버와 통신하여 CRUD 구현
+Redux의 기본적인 기능 이해 및 Redux를 사용해 API 서버와 통신하여 CRUD 구현 <br/>
 
 ## 구현 화면
+
+<br/>
 
 ## 과제 요구사항
 
@@ -27,6 +29,8 @@ Redux의 기본적인 기능 이해 및 Redux를 사용해 API 서버와 통신�
 - Redux logger, Redux-Devtools 설정 필수
 - Redux를 이용한 비동기 처리 필수
 
+<br/>
+
 ## 실행 방법
 
 ```js
@@ -37,15 +41,11 @@ $ yarn run api
 $ yarn start
 ```
 
+<br/>
+
 ## 사용 기술
 
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black"/>
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=typescript&logoColor=white"/>
-<img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=Axios&logoColor=white"/>
-<img src="https://img.shields.io/badge/React redux-764ABC?style=flat&logo=redux&logoColor=white"/>
-<img src="https://img.shields.io/badge/Redux toolkit-764ABC?style=flat&logo=redux&logoColor=white"/>
-<img src="https://img.shields.io/badge/Styled components-DB7093?style=flat&logo=styled-components&logoColor=white"/>
-<br/>
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white) ![React-Redux](https://img.shields.io/badge/React%20redux-764ABC?style=for-the-badge&logo=redux&logoColor=white) ![Redux-toolkit](https://img.shields.io/badge/Redux%20toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white) ![Styled-Components](https://img.shields.io/badge/Styled%20components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) <br/>
 
 - <b>Redux-Toolkit</b>
   - `CreateSlice`를 통해 Action과 Reducer를 한번에 정의할수있고 ` CreateAsyncThunk`를 통해 thunk 미들웨어를 내장하고있어서 추가로 비동기를 위한 외부 라이브러리를 설치할 필요가없다.
@@ -60,6 +60,8 @@ $ yarn start
 - <b>Axios</b>
   - fetch와 비교해 서버로부터 데이터를 받은 후, json으로 변환할 필요가 없는 장점
   - instance를 제작하여 fetch보다 가독성 높은 코드를 작성 가능
+
+<br/>
 
 ## 폴더 구조
 
@@ -85,12 +87,16 @@ redux-comment
 └─ ⚙️ yarn.lock
 ```
 
+<br/>
+
 ## 기술적인 고민들
 
 - handleImgError 추가
   - 과제 요구사항엔 없지만 프로필이미지 입력 input에 error처리를 넣어 이미지 링크가 오류가 나면 기본 이미지가 나오게 처리하였다.
 - error, loading 처리
   - 컴포넌트마다 error, loading을 처리하니 로딩 될 때 컴포넌트 갯수만큼 로딩이 등장한다. reducer에서는 pending, rejected를 주되 리스트를 불러오는 컴포넌트를 제외한 나머지는 loading 처리를 빼야하는건지.. 이부분은 좀 더 알아보고 리팩토링 해야겠다.
+
+<br/>
 
 ## 회고
 
