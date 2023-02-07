@@ -1,8 +1,12 @@
-# API 서버와 통신해서 작동하는 댓글 프로젝트를 Redux를 통해 구현
+## API 서버와 통신해서 작동하는 댓글 프로젝트를 Redux를 통해 구현
+
+<br/>
 
 ## 프로젝트 개요
 
-Redux의 기본적인 기능 이해 및 Redux를 사용해 API 서버와 통신하여 CRUD 구현 <br/>
+Redux의 기본적인 기능 이해 및 Redux를 사용해 API 서버와 통신하여 CRUD 구현
+
+<br/>
 
 ## 구현 화면
 
@@ -66,7 +70,7 @@ $ yarn start
   - fetch와 비교해 서버로부터 데이터를 받은 후, json으로 변환할 필요가 없는 장점이 있다.
   - instance를 제작하여 fetch보다 가독성 높은 코드를 작성 가능하다.
 - <b>Redux-Toolkit</b>
-  - `CreateSlice`를 통해 Action과 Reducer를 한번에 정의할수있고 ` CreateAsyncThunk`를 통해 thunk 미들웨어를 내장하고있어서 추가로 비동기를 위한 외부 라이브러리를 설치할 필요가없다.
+  - `CreateSlice`를 통해 Action과 Reducer를 한번에 정의할수있고 `CreateAsyncThunk`를 통해 thunk 미들웨어를 내장하고있어서 추가로 비동기를 위한 외부 라이브러리를 설치할 필요가없다.
   - redux의 단점인 보일러플레이트 코드가 줄어든다.
   - 많은 라이브러리들이 내장되어 있어서 라이브러리들의 의존성을 줄일 수 있다.
 - <b>Styled-Components</b>
