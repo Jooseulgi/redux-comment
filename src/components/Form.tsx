@@ -78,7 +78,7 @@ function Form() {
         <input
           type="date"
           name="createdAt"
-          placeholder="2020-05-30"
+          placeholder="2023-01-01"
           value={createdAt}
           onChange={handleChange}
           required
@@ -91,34 +91,34 @@ function Form() {
 
 export default Form;
 
-const FormStyle = styled.form`
+const FormStyle = styled.div`
+  input,
   textarea {
-    width: 100%;
     padding: 5px;
-    height: 50px;
+    width: 100%;
     border-radius: 5px;
     border: 1px solid #ddd;
-    resize: none;
     &:focus {
       outline: none;
     }
+    &::placeholder,
+    &::-webkit-input-placeholder {
+      color: #999;
+    }
+  }
+  textarea {
+    height: 50px;
+    resize: none;
   }
   input {
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
     margin-bottom: 4px;
-    border: 1px solid #ddd;
-    &:focus {
-      outline: none;
-    }
   }
   button {
+    padding: 10px 0;
     margin-top: 5px;
     width: 100%;
-    border-radius: 5px;
     border: none;
-    padding: 10px 0;
+    border-radius: 5px;
     background: #ececf9;
     cursor: pointer;
     transition: 0.2s;
