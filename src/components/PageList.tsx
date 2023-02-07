@@ -5,12 +5,9 @@ import {
   getPagingComments,
 } from 'src/store/features/comments.action';
 import styled from 'styled-components';
-import Spinner from './Spinner';
 
 function PageList() {
-  const { totalCount, currentPage, loading, error } = useAppSelector(
-    state => state,
-  );
+  const { totalCount, currentPage, error } = useAppSelector(state => state);
   const dispatch = useAppDispatch();
 
   const pageArray = [];
@@ -27,7 +24,6 @@ function PageList() {
     dispatch(getTotalComments());
   }, [totalCount]);
 
-  if (loading) return <Spinner />;
   if (error) return <div>{error}</div>;
   return (
     <PageListStyle>

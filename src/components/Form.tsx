@@ -8,10 +8,9 @@ import {
 } from 'src/store/features/comments.action';
 import { setForm, setMode, resetForm } from 'src/store/features/comments.slice';
 import styled from 'styled-components';
-import Spinner from './Spinner';
 
 function Form() {
-  const { inputs, submitMode, currentPage, loading, error } = useAppSelector(
+  const { inputs, submitMode, currentPage, error } = useAppSelector(
     state => state,
   );
   const { profile_url, author, content, createdAt } = inputs;
@@ -47,7 +46,6 @@ function Form() {
     dispatch(setMode('post'));
   };
 
-  if (loading) return <Spinner />;
   if (error) return <div>{error}</div>;
   return (
     <FormStyle>
