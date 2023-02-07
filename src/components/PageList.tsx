@@ -15,7 +15,7 @@ function PageList() {
     pageArray.push(i);
   }
 
-  const onClickButton = (e: MouseEvent<HTMLButtonElement>) => {
+  const handlePage = (e: MouseEvent<HTMLButtonElement>) => {
     const pageNum = Number(e.currentTarget.value);
     dispatch(getPagingComments(pageNum));
   };
@@ -31,7 +31,7 @@ function PageList() {
         <NumberPage
           active={page === currentPage}
           key={page}
-          onClick={onClickButton}
+          onClick={handlePage}
           value={page}
         >
           {page}
