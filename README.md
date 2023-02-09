@@ -15,7 +15,7 @@ API 서버와 통신해서 작동하는 댓글 프로젝트를 Redux를 통해 �
 - 댓글 조회, 추가, 수정, 삭제 기능 구현
 - 댓글 추가, 삭제시 1페이지로 이동, 수정 시 페이지 유지, 입력 폼 초기화 구현
 - `redux-toolkit` 이 제공하는 `createAsyncThunk` 이용하여 [비동기 처리를 할 함수 구현](https://github.com/Jooseulgi/redux-comment/blob/master/src/store/features/comments.action.ts)
-- `extraReducers `에서 각 api 호출 [함수의 상태에 따라 state를 처리](https://github.com/Jooseulgi/redux-comment/blob/master/src/store/features/comments.slice.ts)
+- `extraReducers`에서 각 api 호출 [함수의 상태에 따라 state를 처리](https://github.com/Jooseulgi/redux-comment/blob/master/src/store/features/comments.slice.ts)
 - 각 promise 결과에 따라 `pending`, `rejected`를 이용해 loading, error에 대응 <br/>
 
 ### 2) 페이지네이션
@@ -87,8 +87,8 @@ redux-comment
 ├─ 📁 src
 │  ├─ 📁 components  # comment 관련 components가 모여있는 폴더입니다.
 │  ├─ 📁 store  # redux 관련 코드가 있는 폴더입니다.
-│  │  └─ 📁 features # redux action, reducer로 구성된 폴더입니다.
-│  │  ├─ index.ts
+│  │  ├─ 📁 features # redux action, reducer로 구성된 폴더입니다.
+│  │  └─ index.ts
 │  ├─ 📁 types  # 타입 선언 폴더입니다.
 │  ├─ App.tsx
 │  ├─ GlobalStyle.tsx
