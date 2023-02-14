@@ -102,14 +102,3 @@ redux-comment
 ├─ ⚙️ tsconfig.json
 └─ ⚙️ yarn.lock
 ```
-
-<br/>
-
-## 고민한 점
-
-- handleImgError 추가
-  - 과제 요구사항엔 없지만 프로필이미지 입력 input에 error처리를 넣어 이미지 링크에 오류가 나면 기본 이미지가 나오게 처리하였다.
-- error, loading 처리
-
-  - 컴포넌트마다 error, loading을 처리하니 로딩 될 때 컴포넌트 갯수만큼 로딩이 등장한다.
-  - 디버깅을 위해 `pending`, `rejected`를 주되 리스트를 불러오는 컴포넌트를 제외한 나머지는 loading 처리를 제외시켜 갯수만큼 등장했던 로딩을 하나로 줄였다.
