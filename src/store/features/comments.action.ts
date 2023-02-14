@@ -10,8 +10,8 @@ export type SubmitMode = 'put' | 'post';
 
 interface StateType {
   comments: null | Comment[];
-  totalCount: any;
-  currentPage: any;
+  totalCount: number;
+  currentPage: number;
   loading: boolean;
   error: null | string;
   inputs: Comment;
@@ -50,7 +50,7 @@ export const getPagingComments = createAsyncThunk(
 
 export const getTotalComments = createAsyncThunk(
   'comment/getTotalComments',
-  async (_: void, thunkApi: any) => {
+  async (_: void, thunkApi) => {
     try {
       const response = await instance.get('/comments');
       return response.data;
